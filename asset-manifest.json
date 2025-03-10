@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/tax-comparison-explainer/static/js/main.c57906dd.js",
+    "index.html": "/tax-comparison-explainer/index.html",
+    "main.c57906dd.js.map": "/tax-comparison-explainer/static/js/main.c57906dd.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.c57906dd.js"
+  ]
+}
