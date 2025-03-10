@@ -1,3 +1,4 @@
+// ./src/TariffImpactVisualization.js
 import React, { useState } from 'react';
 import {
   BarChart,
@@ -31,44 +32,44 @@ const TariffImpactVisualization = () => {
   ];
 
     const CustomTooltip = ({ active, payload, label }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="custom-tooltip bg-base-100 p-2 rounded shadow border border-base-content">
-          <p className="label">{`${label}`}</p>
-          {payload.map((entry, index) => (
-            <p key={`item-${index}`} style={{ color: entry.color }}>
-              {`${entry.name}: ${entry.value}%`}
-             </p>
-          ))}
-        </div>
-      );
-    }
+      if (active && payload && payload.length) {
+        return (
+          <div className="custom-tooltip bg-white dark:bg-gray-700 p-2 rounded shadow border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200">
+            <p className="label">{`${label}`}</p>
+            {payload.map((entry, index) => (
+              <p key={`item-${index}`} style={{ color: entry.color }}>
+                {`${entry.name}: ${entry.value}%`}
+               </p>
+            ))}
+          </div>
+        );
+      }
 
-    return null;
-  };
+      return null;
+    };
 
     const renderTable = () => (
     <div className="table-container">
       <table className="table table-compact w-full">
         <thead>
           <tr>
-            <th>Income Level</th>
-            <th>% Spent on Essentials</th>
-            <th>25% Tariff Effective Rate</th>
-            <th>35% Tariff Effective Rate</th>
-            <th>50% Tariff Effective Rate</th>
-            <th>100% Tariff Effective Rate</th>
+            <th className="text-gray-800 dark:text-gray-200">Income Level</th>
+            <th className="text-gray-800 dark:text-gray-200">% Spent on Essentials</th>
+            <th className="text-gray-800 dark:text-gray-200">25% Tariff Effective Rate</th>
+            <th className="text-gray-800 dark:text-gray-200">35% Tariff Effective Rate</th>
+            <th className="text-gray-800 dark:text-gray-200">50% Tariff Effective Rate</th>
+            <th className="text-gray-800 dark:text-gray-200">100% Tariff Effective Rate</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item) => (
             <tr key={item.incomeLevel}>
-              <td>{item.incomeLevel}</td>
-              <td>{item.essentialsPercent}%</td>
-              <td>{item.effective25}%</td>
-              <td>{item.effective35}%</td>
-              <td>{item.effective50}%</td>
-              <td>{item.effective100}%</td>
+              <td className="text-gray-800 dark:text-gray-200">{item.incomeLevel}</td>
+              <td className="text-gray-800 dark:text-gray-200">{item.essentialsPercent}%</td>
+              <td className="text-gray-800 dark:text-gray-200">{item.effective25}%</td>
+              <td className="text-gray-800 dark:text-gray-200">{item.effective35}%</td>
+              <td className="text-gray-800 dark:text-gray-200">{item.effective50}%</td>
+              <td className="text-gray-800 dark:text-gray-200">{item.effective100}%</td>
             </tr>
           ))}
         </tbody>
@@ -78,32 +79,32 @@ const TariffImpactVisualization = () => {
 
 
   return (
-    <div className="section-container">
-      <h1 className="text-3xl font-bold mb-4 text-center">
+    <div className="section-container bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg shadow-lg p-6 my-4">
+      <h1 className="text-3xl font-bold mb-4 text-center text-gray-800 dark:text-gray-200">
         Tariff Impact Across Income Levels
       </h1>
 
       <div className="mb-4">
-         <h2 className="text-2xl font-semibold mb-2">Effective Tariff Rate (Interactive Chart)</h2>
+         <h2 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Effective Tariff Rate (Interactive Chart)</h2>
         <div className="flex flex-wrap gap-2 mb-4">
           <label className="cursor-pointer label">
-            <span className="label-text">25% Tariff</span>
+            <span className="label-text text-gray-800 dark:text-gray-200">25% Tariff</span>
             <input type="checkbox" checked={showTariff25} onChange={() => setShowTariff25(!showTariff25)} className="toggle toggle-primary" />
           </label>
           <label className="cursor-pointer label">
-            <span className="label-text">35% Tariff</span>
+            <span className="label-text text-gray-800 dark:text-gray-200">35% Tariff</span>
             <input type="checkbox" checked={showTariff35} onChange={() => setShowTariff35(!showTariff35)} className="toggle toggle-primary" />
           </label>
           <label className="cursor-pointer label">
-            <span className="label-text">50% Tariff</span>
+            <span className="label-text text-gray-800 dark:text-gray-200">50% Tariff</span>
             <input type="checkbox" checked={showTariff50} onChange={() => setShowTariff50(!showTariff50)} className="toggle toggle-primary" />
           </label>
           <label className="cursor-pointer label">
-            <span className="label-text">100% Tariff</span>
+            <span className="label-text text-gray-800 dark:text-gray-200">100% Tariff</span>
             <input type="checkbox" checked={showTariff100} onChange={() => setShowTariff100(!showTariff100)} className="toggle toggle-primary" />
           </label>
            <label className="cursor-pointer label">
-            <span className="label-text">% on Essentials</span>
+            <span className="label-text text-gray-800 dark:text-gray-200">% on Essentials</span>
             <input type="checkbox" checked={showEssentials} onChange={() => setShowEssentials(!showEssentials)} className="toggle toggle-primary" />
           </label>
         </div>
@@ -113,17 +114,19 @@ const TariffImpactVisualization = () => {
               data={data}
               margin={{ top: 20, right: 30, left: 20, bottom: 70 }}
             >
-              <CartesianGrid strokeDasharray="3 3" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#ccc" className="dark:stroke-gray-700"/>
               <XAxis
                 dataKey="incomeLevel"
                 angle={-45}
                 textAnchor="end"
                 height={70}
                 label={{ value: "Income Level", position: "insideBottom", offset: -40 }}
+                tick={{ fill: '#666', className: 'dark:fill-gray-200' }}
               />
-              <YAxis label={{ value: "Effective Tax Rate (%)", angle: -90, position: "insideLeft" }} />
+              <YAxis label={{ value: "Effective Tax Rate (%)", angle: -90, position: "insideLeft" }}
+              tick={{ fill: '#666', className: 'dark:fill-gray-200' }} />
               <Tooltip content={<CustomTooltip />} />
-              <Legend />
+              <Legend wrapperStyle={{ color: '#666' }} className="dark:text-gray-200"/>
               {showTariff25 && <Bar name="25% Tariff" dataKey="effective25" fill="#8884d8" />}
               {showTariff35 && <Bar name="35% Tariff" dataKey="effective35" fill="#82ca9d" />}
               {showTariff50 && <Bar name="50% Tariff" dataKey="effective50" fill="#00C49F" />}
@@ -134,12 +137,12 @@ const TariffImpactVisualization = () => {
       </div>
 
        <div className="mb-4">
-        <h2 className="text-2xl font-semibold mb-2">Effective Tariff Rates (Static Table)</h2>
+        <h2 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Effective Tariff Rates (Static Table)</h2>
         {renderTable()}
       </div>
 
         <div className="mb-4">
-        <h2 className="text-2xl font-semibold mb-2">
+        <h2 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">
           Regressivity of Tariffs (Interactive Chart)
         </h2>
          <div className="chart-container h-96">
@@ -148,16 +151,18 @@ const TariffImpactVisualization = () => {
               data={data}
               margin={{ top: 20, right: 30, left: 20, bottom: 70 }}
             >
-              <CartesianGrid strokeDasharray="3 3" />
+              <CartesianGrid strokeDasharray="3 3"  stroke="#ccc" className="dark:stroke-gray-700"/>
               <XAxis
                 dataKey="incomeLevel"
                 angle={-45}
                 textAnchor="end"
                 height={70}
-                label={{ value: "Income Level", position: "insideBottom", offset: -40 }} />
-              <YAxis label={{ value: "Effective Tax Rate (%)", angle: -90, position: "insideLeft" }} />
+                label={{ value: "Income Level", position: "insideBottom", offset: -40 }}
+                tick={{ fill: '#666', className: 'dark:fill-gray-200' }}/>
+              <YAxis label={{ value: "Effective Tax Rate (%)", angle: -90, position: "insideLeft" }}
+              tick={{ fill: '#666', className: 'dark:fill-gray-200' }} />
               <Tooltip content={<CustomTooltip />} />
-              <Legend />
+              <Legend wrapperStyle={{ color: '#666' }} className="dark:text-gray-200"/>
               {showTariff25 && <Line type="monotone" dataKey="effective25" name="25% Tariff" stroke="#8884d8" strokeWidth={2} dot={{ r: 5 }} activeDot={{ r: 8 }} />}
               {showTariff35 && <Line type="monotone" dataKey="effective35" name="35% Tariff" stroke="#82ca9d" strokeWidth={2} dot={{ r: 5 }} activeDot={{ r: 8 }} />}
               {showTariff50 && <Line type="monotone" dataKey="effective50" name="50% Tariff" stroke="#00C49F" strokeWidth={2} dot={{ r: 5 }} activeDot={{ r: 8 }} />}
@@ -167,7 +172,7 @@ const TariffImpactVisualization = () => {
         </div>
       </div>
         <div className="mb-4">
-        <h2 className="text-2xl font-semibold mb-2">
+        <h2 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">
           Percentage of Income Spent on Essentials (Interactive Chart)
         </h2>
         <div className="chart-container h-96">
@@ -176,33 +181,35 @@ const TariffImpactVisualization = () => {
                 data={data}
                 margin={{ top: 20, right: 30, left: 20, bottom: 70 }}
                 >
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid strokeDasharray="3 3"  stroke="#ccc" className="dark:stroke-gray-700"/>
                 <XAxis
                     dataKey="incomeLevel"
                     angle={-45}
                     textAnchor="end"
                     height={70}
                     label={{ value: "Income Level", position: "insideBottom", offset: -40 }}
+                    tick={{ fill: '#666', className: 'dark:fill-gray-200' }}
                 />
-                <YAxis label={{ value: "Percentage of Income (%)", angle: -90, position: "insideLeft" }} />
+                <YAxis label={{ value: "Percentage of Income (%)", angle: -90, position: "insideLeft" }}
+                tick={{ fill: '#666', className: 'dark:fill-gray-200' }} />
                 <Tooltip content={<CustomTooltip />} />
-                <Legend />
+                <Legend wrapperStyle={{ color: '#666' }} className="dark:text-gray-200"/>
                 {showEssentials && <Bar name="% Spent on Essentials" dataKey="essentialsPercent" fill="#ff7300" />}
                 </BarChart>
             </ResponsiveContainer>
          </div>
       </div>
 
-      <div className="mb-4 explanation-container">
-        <h3 className="text-xl font-semibold mb-2">Simple Explanation</h3>
-        <p>
+      <div className="mb-4 explanation-container border border-gray-300 dark:border-gray-700 p-4 rounded-lg">
+        <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Simple Explanation</h3>
+        <p className="text-gray-800 dark:text-gray-200">
           This chart shows how tariffs (taxes on imported goods) would affect people at different income levels.  The bars represent the percentage of a person's income that would go towards paying these tariffs. Notice how the percentage is much higher for lower-income individuals compared to very wealthy individuals. This is because lower-income people spend a larger portion of their income on everyday necessities, many of which are imported goods.
         </p>
       </div>
 
-      <div className="explanation-container">
-        <h3 className="text-xl font-semibold mb-2">Complex Explanation</h3>
-        <p>
+      <div className="explanation-container border border-gray-300 dark:border-gray-700 p-4 rounded-lg">
+        <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Complex Explanation</h3>
+        <p className="text-gray-800 dark:text-gray-200">
         This visualization demonstrates the regressive nature of tariffs as a primary revenue source.  The effective tariff rate, calculated as (Tariff Rate) * (% of Income Spent on Imported Goods), shows a clear inverse relationship with income. Lower-income households allocate a significantly larger proportion of their income to essential consumption, much of which is subject to import tariffs. Consequently, a flat tariff rate translates to a higher effective tax burden on those with lower incomes.  The line chart highlights this disparity, showing a decreasing effective tax rate as income increases.  Higher tariffs exacerbate this effect.  The "Percentage of Income Spent on Essentials" chart shows the underlying driver of this regressivity – the decreasing proportion of income spent on necessities as income rises.  This analysis underscores the potential for tariffs to increase income inequality.
         </p>
       </div>
