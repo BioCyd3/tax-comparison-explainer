@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.js": "/tax-comparison-explainer/static/js/main.c57906dd.js",
+    "main.css": "/tax-comparison-explainer/static/css/main.06e1f475.css",
+    "main.js": "/tax-comparison-explainer/static/js/main.2b235239.js",
     "index.html": "/tax-comparison-explainer/index.html",
-    "main.c57906dd.js.map": "/tax-comparison-explainer/static/js/main.c57906dd.js.map"
+    "main.06e1f475.css.map": "/tax-comparison-explainer/static/css/main.06e1f475.css.map",
+    "main.2b235239.js.map": "/tax-comparison-explainer/static/js/main.2b235239.js.map"
   },
   "entrypoints": [
-    "static/js/main.c57906dd.js"
+    "static/css/main.06e1f475.css",
+    "static/js/main.2b235239.js"
   ]
 }
