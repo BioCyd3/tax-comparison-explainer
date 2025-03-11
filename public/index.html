@@ -17,6 +17,8 @@
           display: flex;
           flex-direction: column;
           font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* More readable font */
+          background-color: #1f2937; /* Consistent dark background */
+          color: #e5e7eb; /* Consistent light text */
         }
         #root {
           flex: 1;
@@ -29,12 +31,59 @@
           flex-direction: column;
         }
         .table-container {
-            @apply overflow-x-auto; /* Makes the table scrollable horizontally on small screens */
+            overflow-x: auto; /* Makes the table scrollable horizontally on small screens */
+        }
+        /* Sticky Header Styles */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background-color: #374151; /* Darker header background */
+            z-index: 10; /* Ensure header stays on top */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+            padding: 0.5rem 1rem; /* Consistent padding */
+        }
+        .header-title {
+            font-size: 1.5rem; /* Larger title */
+            font-weight: bold;
+            color: #f3f4f6; /* Lighter text for contrast */
+            margin-right: auto; /* Push title to the left */
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem; /* Space out the links */
+        }
+        .nav-links a {
+            color: #9ca3af; /* Slightly muted link color */
+            text-decoration: none; /* Remove underlines */
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s ease; /* Smooth transition */
+        }
+        .nav-links a:hover {
+            background-color: #4b5563; /* Hover effect */
+            color: #f3f4f6; /* Lighter text on hover */
+        }
+
+        /* Footer Styles */
+        .footer {
+          background-color: #374151;
+          color: #9ca3af;
+          padding: 1rem;
+          text-align: center;
+          margin-top: auto; /* Push to bottom */
+        }
+        .footer a {
+            color: #e5e7eb;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+        .footer a:hover {
+            text-decoration: underline;
         }
 
     </style>
 </head>
-<body class="dark">  <!-- Dark class for Tailwind -->
+<body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 </body>

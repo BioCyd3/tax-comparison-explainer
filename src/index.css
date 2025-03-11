@@ -1,4 +1,64 @@
-/* ./src/index.css */
+// ./src/index.css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Styles */
+.section-container {
+  @apply bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg shadow-lg p-6 my-4;
+}
+
+.section-title {
+  @apply text-3xl font-bold mb-4 text-center text-gray-800 dark:text-gray-200;
+}
+
+.subsection-title {
+  @apply text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200;
+}
+
+.explanation-container {
+  @apply border border-gray-300 dark:border-gray-700 p-4 rounded-lg;
+}
+
+.explanation-title {
+  @apply text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200;
+}
+
+.toggle-label {
+    @apply cursor-pointer label;
+}
+.toggle-text {
+    @apply label-text text-gray-800 dark:text-gray-200;
+}
+.chart-container {
+    @apply h-96;
+}
+
+.custom-tooltip {
+    @apply bg-white dark:bg-gray-700 p-2 rounded shadow border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200;
+}
+.label {
+    @apply block;
+}
+
+.table-container {
+    @apply overflow-x-auto;
+}
+
+/* Improve table styles */
+.responsive-table {
+  @apply w-full text-sm; /* Smaller text for compactness */
+}
+.responsive-table thead th {
+  @apply bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 border-b border-gray-300 dark:border-gray-600; /* Header styles */
+}
+.responsive-table tbody td {
+  @apply px-4 py-2 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200; /* Body styles */
+}
+.responsive-table tbody tr:nth-child(even) {
+  @apply bg-gray-100 dark:bg-gray-800; /* Zebra striping for readability */
+}
+
+.ex-sep {
+    @apply pt-3 mt-3 border-t-2 border-gray-400;
+}

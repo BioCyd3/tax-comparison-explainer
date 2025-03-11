@@ -34,11 +34,11 @@ const TariffImpactVisualization = () => {
     const CustomTooltip = ({ active, payload, label }) => {
       if (active && payload && payload.length) {
         return (
-          <div className="custom-tooltip bg-white dark:bg-gray-700 p-2 rounded shadow border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200">
+          <div className="custom-tooltip">
             <p className="label">{`${label}`}</p>
             {payload.map((entry, index) => (
               <p key={`item-${index}`} style={{ color: entry.color }}>
-                {`${entry.name}: ${entry.value}%`}
+                {`${entry.name}: ${entry.value.toFixed(2)}%`}
                </p>
             ))}
           </div>
@@ -50,26 +50,26 @@ const TariffImpactVisualization = () => {
 
     const renderTable = () => (
     <div className="table-container">
-      <table className="table table-compact w-full">
+      <table className="responsive-table">
         <thead>
           <tr>
-            <th className="text-gray-800 dark:text-gray-200">Income Level</th>
-            <th className="text-gray-800 dark:text-gray-200">% Spent on Essentials</th>
-            <th className="text-gray-800 dark:text-gray-200">25% Tariff Effective Rate</th>
-            <th className="text-gray-800 dark:text-gray-200">35% Tariff Effective Rate</th>
-            <th className="text-gray-800 dark:text-gray-200">50% Tariff Effective Rate</th>
-            <th className="text-gray-800 dark:text-gray-200">100% Tariff Effective Rate</th>
+            <th>Income Level</th>
+            <th>% Spent on Essentials</th>
+            <th>25% Tariff Effective Rate</th>
+            <th>35% Tariff Effective Rate</th>
+            <th>50% Tariff Effective Rate</th>
+            <th>100% Tariff Effective Rate</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item) => (
             <tr key={item.incomeLevel}>
-              <td className="text-gray-800 dark:text-gray-200">{item.incomeLevel}</td>
-              <td className="text-gray-800 dark:text-gray-200">{item.essentialsPercent}%</td>
-              <td className="text-gray-800 dark:text-gray-200">{item.effective25}%</td>
-              <td className="text-gray-800 dark:text-gray-200">{item.effective35}%</td>
-              <td className="text-gray-800 dark:text-gray-200">{item.effective50}%</td>
-              <td className="text-gray-800 dark:text-gray-200">{item.effective100}%</td>
+              <td>{item.incomeLevel}</td>
+              <td>{item.essentialsPercent}%</td>
+              <td>{item.effective25}%</td>
+              <td>{item.effective35}%</td>
+              <td>{item.effective50}%</td>
+              <td>{item.effective100}%</td>
             </tr>
           ))}
         </tbody>
@@ -79,36 +79,36 @@ const TariffImpactVisualization = () => {
 
 
   return (
-    <div className="section-container bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg shadow-lg p-6 my-4">
-      <h1 className="text-3xl font-bold mb-4 text-center text-gray-800 dark:text-gray-200">
+    <section className="section-container">
+      <h1 className="section-title">
         Tariff Impact Across Income Levels
       </h1>
 
-      <div className="mb-4">
-         <h2 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Effective Tariff Rate (Interactive Chart)</h2>
+      <section className="mb-4">
+         <h2 className="subsection-title">Effective Tariff Rate (Interactive Chart)</h2>
         <div className="flex flex-wrap gap-2 mb-4">
-          <label className="cursor-pointer label">
-            <span className="label-text text-gray-800 dark:text-gray-200">25% Tariff</span>
+          <label className="toggle-label">
+            <span className="toggle-text">25% Tariff</span>
             <input type="checkbox" checked={showTariff25} onChange={() => setShowTariff25(!showTariff25)} className="toggle toggle-primary" />
           </label>
-          <label className="cursor-pointer label">
-            <span className="label-text text-gray-800 dark:text-gray-200">35% Tariff</span>
+          <label className="toggle-label">
+            <span className="toggle-text">35% Tariff</span>
             <input type="checkbox" checked={showTariff35} onChange={() => setShowTariff35(!showTariff35)} className="toggle toggle-primary" />
           </label>
-          <label className="cursor-pointer label">
-            <span className="label-text text-gray-800 dark:text-gray-200">50% Tariff</span>
+          <label className="toggle-label">
+            <span className="toggle-text">50% Tariff</span>
             <input type="checkbox" checked={showTariff50} onChange={() => setShowTariff50(!showTariff50)} className="toggle toggle-primary" />
           </label>
-          <label className="cursor-pointer label">
-            <span className="label-text text-gray-800 dark:text-gray-200">100% Tariff</span>
+          <label className="toggle-label">
+            <span className="toggle-text">100% Tariff</span>
             <input type="checkbox" checked={showTariff100} onChange={() => setShowTariff100(!showTariff100)} className="toggle toggle-primary" />
           </label>
-           <label className="cursor-pointer label">
-            <span className="label-text text-gray-800 dark:text-gray-200">% on Essentials</span>
+           <label className="toggle-label">
+            <span className="toggle-text">% on Essentials</span>
             <input type="checkbox" checked={showEssentials} onChange={() => setShowEssentials(!showEssentials)} className="toggle toggle-primary" />
           </label>
         </div>
-        <div className="chart-container h-96">
+        <div className="chart-container">
           <ResponsiveContainer width="100%" height="100%">
              <BarChart
               data={data}
@@ -134,18 +134,18 @@ const TariffImpactVisualization = () => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-      </div>
+      </section>
 
-       <div className="mb-4">
-        <h2 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Effective Tariff Rates (Static Table)</h2>
+       <section className="mb-4">
+        <h2 className="subsection-title">Effective Tariff Rates (Static Table)</h2>
         {renderTable()}
-      </div>
+      </section>
 
-        <div className="mb-4">
-        <h2 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">
+        <section className="mb-4">
+        <h2 className="subsection-title">
           Regressivity of Tariffs (Interactive Chart)
         </h2>
-         <div className="chart-container h-96">
+         <div className="chart-container">
           <ResponsiveContainer width="100%" height="100%">
            <LineChart
               data={data}
@@ -170,12 +170,12 @@ const TariffImpactVisualization = () => {
             </LineChart>
           </ResponsiveContainer>
         </div>
-      </div>
-        <div className="mb-4">
-        <h2 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">
+      </section>
+        <section className="mb-4">
+        <h2 className="subsection-title">
           Percentage of Income Spent on Essentials (Interactive Chart)
         </h2>
-        <div className="chart-container h-96">
+        <div className="chart-container">
                 <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                 data={data}
@@ -198,22 +198,22 @@ const TariffImpactVisualization = () => {
                 </BarChart>
             </ResponsiveContainer>
          </div>
-      </div>
+      </section>
 
-      <div className="mb-4 explanation-container border border-gray-300 dark:border-gray-700 p-4 rounded-lg">
-        <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Simple Explanation</h3>
-        <p className="text-gray-800 dark:text-gray-200">
+      <section className="mb-4 explanation-container">
+        <h3 className="explanation-title">Simple Explanation</h3>
+        <p>
           This chart shows how tariffs (taxes on imported goods) would affect people at different income levels.  The bars represent the percentage of a person's income that would go towards paying these tariffs. Notice how the percentage is much higher for lower-income individuals compared to very wealthy individuals. This is because lower-income people spend a larger portion of their income on everyday necessities, many of which are imported goods.
         </p>
-      </div>
 
-      <div className="explanation-container border border-gray-300 dark:border-gray-700 p-4 rounded-lg">
-        <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Complex Explanation</h3>
-        <p className="text-gray-800 dark:text-gray-200">
+        <div className="ex-sep"/>
+
+        <h3 className="explanation-title">Complex Explanation</h3>
+        <p>
         This visualization demonstrates the regressive nature of tariffs as a primary revenue source.  The effective tariff rate, calculated as (Tariff Rate) * (% of Income Spent on Imported Goods), shows a clear inverse relationship with income. Lower-income households allocate a significantly larger proportion of their income to essential consumption, much of which is subject to import tariffs. Consequently, a flat tariff rate translates to a higher effective tax burden on those with lower incomes.  The line chart highlights this disparity, showing a decreasing effective tax rate as income increases.  Higher tariffs exacerbate this effect.  The "Percentage of Income Spent on Essentials" chart shows the underlying driver of this regressivity – the decreasing proportion of income spent on necessities as income rises.  This analysis underscores the potential for tariffs to increase income inequality.
         </p>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 };
 
